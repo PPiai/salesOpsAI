@@ -1,4 +1,5 @@
 "use client"
+
 import React from 'react';
 import { FullPageChat } from "flowise-embed-react"
 
@@ -9,7 +10,7 @@ const FlowiseChat = () => {
       apiHost="https://flowise-flowise.uyk8ty.easypanel.host"
       theme={{
         button: {
-          backgroundColor: "#3B81F6",
+          backgroundColor: "#dc2626",
           right: 20,
           bottom: 20,
           size: 48,
@@ -20,18 +21,17 @@ const FlowiseChat = () => {
         tooltip: {
           showTooltip: true,
           tooltipMessage: "Olá! 👋",
-          tooltipBackgroundColor: "black",
+          tooltipBackgroundColor: "#dc2626",
           tooltipTextColor: "white",
           tooltipFontSize: 16,
         },
         chatWindow: {
           showTitle: true,
           title: "Sales Ops AI",
-          titleAvatarSrc:
-            "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+          titleAvatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
           showAgentMessages: true,
           welcomeMessage: "Olá! Como posso ajudá-lo com suas vendas hoje?",
-          errorMessage: "Esta é uma mensagem de erro personalizada",
+          errorMessage: "Ops! Algo deu errado. Tente novamente.",
           backgroundColor: "#ffffff",
           height: 700,
           width: 400,
@@ -41,11 +41,10 @@ const FlowiseChat = () => {
             backgroundColor: "#f7f8ff",
             textColor: "#303235",
             showAvatar: true,
-            avatarSrc:
-              "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+            avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
           },
           userMessage: {
-            backgroundColor: "#3B81F6",
+            backgroundColor: "#dc2626",
             textColor: "#ffffff",
             showAvatar: true,
             avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
@@ -54,9 +53,9 @@ const FlowiseChat = () => {
             placeholder: "Digite sua pergunta sobre vendas...",
             backgroundColor: "#ffffff",
             textColor: "#303235",
-            sendButtonColor: "#3B81F6",
-            maxChars: 50,
-            maxCharsWarningMessage: "Você excedeu o limite de caracteres. Por favor, digite menos de 50 caracteres.",
+            sendButtonColor: "#dc2626",
+            maxChars: 500,
+            maxCharsWarningMessage: "Você excedeu o limite de caracteres. Por favor, digite menos de 500 caracteres.",
             autoFocus: true,
             sendMessageSound: true,
             receiveMessageSound: true,
@@ -66,16 +65,11 @@ const FlowiseChat = () => {
           },
           footer: {
             textColor: "#303235",
-            text: "Feito Por V4 Ferraz Piai",
-            company: "Sales Ops AI",
+            text: "Feito Por",
+            company: "V4 Ferraz Piai",
             companyLink: "https://v4ferrazpiai.com.br",
           },
         },
-      }}
-      observersConfig={{
-        observeUserInput: true,
-        observeLoading: true,
-        observeMessages: true,
       }}
     />
   )
