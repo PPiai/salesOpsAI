@@ -23,10 +23,9 @@ const FlowiseChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const starterPrompts = [
-    "Como posso melhorar minhas vendas?",
-    "Quais são as melhores práticas de vendas?",
-    "Como qualificar leads?",
-    "Estratégias para fechar mais negócios",
+    "Quais dados e informações são essenciais para a análise do cenário atual da empresa?",
+    "Quais são os principais passos para desenhar e configurar um novo processo comercial eficiente?",
+    "Como medir a efetividade das ações implementadas e garantir o desenvolvimento contínuo da equipe de vendas?"
   ]
 
   const handleResetChat = () => {
