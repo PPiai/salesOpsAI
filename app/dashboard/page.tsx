@@ -22,7 +22,7 @@ export default async function DashboardPage() {
             type="submit"
             variant="outline"
             size="sm"
-            className="border-gray-700 text-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 bg-transparent backdrop-blur-sm"
+            className="border-gray-700 text-gray-300 hover:bg-red-600 hover:text-white hover:border-red-600 bg-red-1000 backdrop-blur-sm"
           >
             <LogOut className="h-4 w-4 mr-2" />
             Sair
