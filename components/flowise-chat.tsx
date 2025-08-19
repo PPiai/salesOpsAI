@@ -38,8 +38,8 @@ const FlowiseChat = () => {
                 },
                 disclaimer: {
                     title: 'Sales Ops AI',
-                    message: "Bem-vindo ao seu assistente de vendas inteligente",
-                    textColor: 'black',
+                    message: "Bem-vindo ao seu assistente de vendas inteligente. Clique para começar a conversar!",
+                    textColor: '#303235',
                     buttonColor: '#dc2626',
                     buttonText: 'Iniciar Conversa',
                     buttonTextColor: 'white',
@@ -47,21 +47,58 @@ const FlowiseChat = () => {
                     backgroundColor: 'white'
                 },
                 customCSS: `
-                    /* Remove botão de áudio */
+                    /* Remove TODOS os controles de áudio */
                     button[aria-label*="audio"], 
                     button[aria-label*="voice"], 
                     button[aria-label*="record"],
+                    button[title*="audio"],
+                    button[title*="voice"],
+                    button[title*="Play"],
+                    button[title*="Stop"],
                     .voice-button,
                     .audio-button,
+                    .audio-controls,
+                    .audio-player,
+                    audio,
+                    .audio-element,
+                    .media-controls,
+                    .audio-recorder,
                     [data-testid*="voice"],
-                    [data-testid*="audio"] {
+                    [data-testid*="audio"],
+                    [class*="audio"],
+                    [class*="voice"],
+                    [class*="mic"],
+                    [class*="media"],
+                    [class*="play"],
+                    [class*="record"] {
                         display: none !important;
+                        visibility: hidden !important;
+                        opacity: 0 !important;
+                        pointer-events: none !important;
                     }
                     
                     /* Remove ícones de áudio */
                     svg[data-icon*="microphone"],
                     svg[data-icon*="voice"],
-                    .microphone-icon {
+                    svg[data-icon*="audio"],
+                    svg[data-icon*="play"],
+                    svg[data-icon*="pause"],
+                    .microphone-icon,
+                    .voice-icon,
+                    .play-icon {
+                        display: none !important;
+                    }
+                    
+                    /* Ajustar altura para compensar header personalizado */
+                    .flowise-full-chatbot {
+                        height: calc(100vh - 64px) !important;
+                        margin-top: 64px !important;
+                    }
+                    
+                    /* Esconder header original do Flowise */
+                    .flowise-header,
+                    .chat-header,
+                    .title-bar {
                         display: none !important;
                     }
                 `,
@@ -73,6 +110,7 @@ const FlowiseChat = () => {
                     welcomeMessage: 'Olá! Como posso ajudá-lo com suas vendas hoje?',
                     errorMessage: 'Ops! Algo deu errado. Tente novamente.',
                     backgroundColor: '#ffffff',
+                    backgroundImage: '',
                     height: '100%',
                     width: '100%',
                     fontSize: 16,
@@ -81,7 +119,7 @@ const FlowiseChat = () => {
                         "Quais são os principais passos para desenhar e configurar um novo processo comercial eficiente?",
                         "Como medir a efetividade das ações implementadas e garantir o desenvolvimento contínuo da equipe de vendas?"
                     ],
-                    starterPromptFontSize: 15,
+                    starterPromptFontSize: 14,
                     clearChatOnReload: false,
                     sourceDocsTitle: 'Fontes:',
                     renderHTML: true,
