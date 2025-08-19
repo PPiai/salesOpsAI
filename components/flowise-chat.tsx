@@ -1,9 +1,146 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FullPageChat } from "flowise-embed-react"
 
 const FlowiseChat = () => {
+  
+  useEffect(() => {
+    // Aplicar CSS customizado depois que o componente carregar
+    const applyCustomCSS = () => {
+      const style = document.createElement('style');
+      style.id = 'flowise-custom-styles';
+      style.innerHTML = `
+        /* FORÇAR header fixo - CSS global mais agressivo */
+        .flowise-chatwindow-header,
+        [class*="header"],
+        [class*="Header"],
+        .MuiAppBar-root,
+        header {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100vw !important;
+          z-index: 99999 !important;
+          background: #dc2626 !important;
+          background-color: #dc2626 !important;
+          color: #ffffff !important;
+          border-bottom: 2px solid #dc2626 !important;
+          text-align: center !important;
+          height: 60px !important;
+          min-height: 60px !important;
+          max-height: 60px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 0 15px !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+        
+        /* FORÇAR cores do header */
+        .flowise-chatwindow-header *,
+        [class*="header"] *,
+        [class*="Header"] *,
+        .MuiAppBar-root *,
+        header * {
+          color: #ffffff !important;
+          background: transparent !important;
+          background-color: transparent !important;
+        }
+        
+        /* FORÇAR título do header */
+        .flowise-chatwindow-title,
+        [class*="title"],
+        [class*="Title"] {
+          color: #ffffff !important;
+          background: transparent !important;
+          background-color: transparent !important;
+          font-weight: bold !important;
+        }
+        
+        /* FORÇAR container principal */
+        .flowise-chatwindow,
+        [class*="chatwindow"],
+        [class*="chat-window"] {
+          height: 100vh !important;
+          min-height: 100vh !important;
+          position: relative !important;
+          background: #ffffff !important;
+          background-color: #ffffff !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: hidden !important;
+        }
+        
+        /* FORÇAR área de mensagens */
+        .flowise-chatmessages,
+        [class*="messages"],
+        [class*="Messages"],
+        [class*="chat-messages"] {
+          padding-top: 80px !important;
+          padding-bottom: 100px !important;
+          height: calc(100vh - 160px) !important;
+          min-height: calc(100vh - 160px) !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+          background: #ffffff !important;
+          background-color: #ffffff !important;
+          position: relative !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+        
+        /* FORÇAR input fixo */
+        .flowise-textinput,
+        [class*="textinput"],
+        [class*="text-input"],
+        [class*="input-container"] {
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100vw !important;
+          z-index: 99999 !important;
+          background: #ffffff !important;
+          background-color: #ffffff !important;
+          border-top: 2px solid #dc2626 !important;
+          padding: 15px !important;
+          margin: 0 !important;
+          height: 80px !important;
+          min-height: 80px !important;
+          max-height: 80px !important;
+          display: flex !important;
+          align-items: center !important;
+          box-sizing: border-box !important;
+        }
+      `;
+      
+      // Remove estilo anterior se existir
+      const existingStyle = document.getElementById('flowise-custom-styles');
+      if (existingStyle) {
+        existingStyle.remove();
+      }
+      
+      document.head.appendChild(style);
+    };
+
+    // Aplicar CSS imediatamente
+    applyCustomCSS();
+    
+    // Aplicar CSS novamente após um pequeno delay (caso o componente ainda esteja carregando)
+    const timer1 = setTimeout(applyCustomCSS, 500);
+    const timer2 = setTimeout(applyCustomCSS, 1000);
+    const timer3 = setTimeout(applyCustomCSS, 2000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, []);
+
   return (
     <FullPageChat
       chatflowid="9609086f-a776-4952-8da5-7b43c7f7fede"
