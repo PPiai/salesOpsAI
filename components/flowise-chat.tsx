@@ -16,7 +16,7 @@ const FlowiseChat = () => {
       }}
       theme={{    
         button: {
-          backgroundColor: '#dc2626',
+          backgroundColor: '#000000',
           right: 20,
           bottom: 20,
           size: 48,
