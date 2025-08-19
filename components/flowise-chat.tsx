@@ -343,7 +343,7 @@ const FlowiseChat = () => {
             opacity: 0 !important;
             pointer-events: none !important;
           }
-          .element.style {
+          .chatbot-chat-view {
             margin: 0px;
             overflow: hidden;
             background-color: rgb(255, 255, 255);
