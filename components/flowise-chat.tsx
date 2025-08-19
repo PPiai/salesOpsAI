@@ -343,7 +343,12 @@ const FlowiseChat = () => {
             opacity: 0 !important;
             pointer-events: none !important;
           }
-          
+          .element.style {
+            margin: 0px;
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+            height: -webkit-fill-available;
+          }
           /* Remover ícones de áudio */
           svg[data-icon*="microphone"],
           svg[data-icon*="voice"],
