@@ -1,146 +1,9 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FullPageChat } from "flowise-embed-react"
 
 const FlowiseChat = () => {
-  
-  useEffect(() => {
-    // Aplicar CSS customizado depois que o componente carregar
-    const applyCustomCSS = () => {
-      const style = document.createElement('style');
-      style.id = 'flowise-custom-styles';
-      style.innerHTML = `
-        /* FORÇAR header fixo - CSS global mais agressivo */
-        .flowise-chatwindow-header,
-        [class*="header"],
-        [class*="Header"],
-        .MuiAppBar-root,
-        header {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100vw !important;
-          z-index: 99999 !important;
-          background: #dc2626 !important;
-          background-color: #dc2626 !important;
-          color: #ffffff !important;
-          border-bottom: 2px solid #dc2626 !important;
-          text-align: center !important;
-          height: 60px !important;
-          min-height: 60px !important;
-          max-height: 60px !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          padding: 0 15px !important;
-          margin: 0 !important;
-          box-sizing: border-box !important;
-        }
-        
-        /* FORÇAR cores do header */
-        .flowise-chatwindow-header *,
-        [class*="header"] *,
-        [class*="Header"] *,
-        .MuiAppBar-root *,
-        header * {
-          color: #ffffff !important;
-          background: transparent !important;
-          background-color: transparent !important;
-        }
-        
-        /* FORÇAR título do header */
-        .flowise-chatwindow-title,
-        [class*="title"],
-        [class*="Title"] {
-          color: #ffffff !important;
-          background: transparent !important;
-          background-color: transparent !important;
-          font-weight: bold !important;
-        }
-        
-        /* FORÇAR container principal */
-        .flowise-chatwindow,
-        [class*="chatwindow"],
-        [class*="chat-window"] {
-          height: 100vh !important;
-          min-height: 100vh !important;
-          position: relative !important;
-          background: #ffffff !important;
-          background-color: #ffffff !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          overflow: hidden !important;
-        }
-        
-        /* FORÇAR área de mensagens */
-        .flowise-chatmessages,
-        [class*="messages"],
-        [class*="Messages"],
-        [class*="chat-messages"] {
-          padding-top: 80px !important;
-          padding-bottom: 100px !important;
-          height: calc(100vh - 160px) !important;
-          min-height: calc(100vh - 160px) !important;
-          overflow-y: auto !important;
-          overflow-x: hidden !important;
-          background: #ffffff !important;
-          background-color: #ffffff !important;
-          position: relative !important;
-          margin: 0 !important;
-          box-sizing: border-box !important;
-        }
-        
-        /* FORÇAR input fixo */
-        .flowise-textinput,
-        [class*="textinput"],
-        [class*="text-input"],
-        [class*="input-container"] {
-          position: fixed !important;
-          bottom: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100vw !important;
-          z-index: 99999 !important;
-          background: #ffffff !important;
-          background-color: #ffffff !important;
-          border-top: 2px solid #dc2626 !important;
-          padding: 15px !important;
-          margin: 0 !important;
-          height: 80px !important;
-          min-height: 80px !important;
-          max-height: 80px !important;
-          display: flex !important;
-          align-items: center !important;
-          box-sizing: border-box !important;
-        }
-      `;
-      
-      // Remove estilo anterior se existir
-      const existingStyle = document.getElementById('flowise-custom-styles');
-      if (existingStyle) {
-        existingStyle.remove();
-      }
-      
-      document.head.appendChild(style);
-    };
-
-    // Aplicar CSS imediatamente
-    applyCustomCSS();
-    
-    // Aplicar CSS novamente após um pequeno delay (caso o componente ainda esteja carregando)
-    const timer1 = setTimeout(applyCustomCSS, 500);
-    const timer2 = setTimeout(applyCustomCSS, 1000);
-    const timer3 = setTimeout(applyCustomCSS, 2000);
-
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-    };
-  }, []);
-
   return (
     <FullPageChat
       chatflowid="9609086f-a776-4952-8da5-7b43c7f7fede"
@@ -184,134 +47,87 @@ const FlowiseChat = () => {
           backgroundColor: 'white'
         },
         customCSS: `
-          /* FORÇAR header fixo - usando múltiplos seletores */
-          .flowise-chatwindow-header,
-          [class*="header"],
-          [class*="Header"],
-          .MuiAppBar-root,
-          header {
+          /* Header fixo no topo */
+          .flowise-chatwindow-header {
             position: fixed !important;
             top: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            width: 100vw !important;
-            z-index: 9999 !important;
+            z-index: 1000 !important;
             background: #dc2626 !important;
-            background-color: #dc2626 !important;
             color: #ffffff !important;
             border-bottom: 2px solid #dc2626 !important;
             text-align: center !important;
             height: 60px !important;
-            min-height: 60px !important;
-            max-height: 60px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             padding: 0 15px !important;
-            margin: 0 !important;
-            box-sizing: border-box !important;
           }
           
-          /* FORÇAR cores do header */
-          .flowise-chatwindow-header *,
-          [class*="header"] *,
-          [class*="Header"] *,
-          .MuiAppBar-root *,
-          header * {
+          /* Forçar cores vermelho/branco no título do header */
+          .flowise-chatwindow-header * {
             color: #ffffff !important;
             background: transparent !important;
-            background-color: transparent !important;
           }
           
-          /* FORÇAR título do header */
-          .flowise-chatwindow-title,
-          [class*="title"],
-          [class*="Title"] {
+          .flowise-chatwindow-header .flowise-chatwindow-title {
             color: #ffffff !important;
             background: transparent !important;
-            background-color: transparent !important;
             font-weight: bold !important;
           }
           
-          /* FORÇAR container principal */
-          .flowise-chatwindow,
-          [class*="chatwindow"],
-          [class*="chat-window"],
-          .MuiDialog-paper,
-          main,
-          #root > div {
-            height: 100vh !important;
-            min-height: 100vh !important;
-            position: relative !important;
-            background: #ffffff !important;
-            background-color: #ffffff !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow: hidden !important;
+          /* Logo no header */
+          .flowise-chatwindow-header img {
+            margin-right: 10px !important;
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
           }
           
-          /* FORÇAR área de mensagens */
-          .flowise-chatmessages,
-          [class*="messages"],
-          [class*="Messages"],
-          [class*="chat-messages"],
-          .MuiList-root {
+          /* Área de mensagens com padding para header e input fixos */
+          .flowise-chatwindow .flowise-chatmessages {
             padding-top: 80px !important;
-            padding-bottom: 100px !important;
+            padding-bottom: 80px !important;
             height: calc(100vh - 160px) !important;
-            min-height: calc(100vh - 160px) !important;
             overflow-y: auto !important;
-            overflow-x: hidden !important;
             background: #ffffff !important;
-            background-color: #ffffff !important;
-            position: relative !important;
-            margin: 0 !important;
-            box-sizing: border-box !important;
           }
           
-          /* FORÇAR input fixo */
-          .flowise-textinput,
-          [class*="textinput"],
-          [class*="text-input"],
-          [class*="input-container"],
-          .MuiTextField-root,
-          form {
+          /* Input de mensagem fixo na parte inferior */
+          .flowise-chatwindow .flowise-textinput {
             position: fixed !important;
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            width: 100vw !important;
-            z-index: 9999 !important;
+            z-index: 1000 !important;
             background: #ffffff !important;
-            background-color: #ffffff !important;
             border-top: 2px solid #dc2626 !important;
             padding: 15px !important;
             margin: 0 !important;
             height: 80px !important;
-            min-height: 80px !important;
-            max-height: 80px !important;
             display: flex !important;
             align-items: center !important;
-            box-sizing: border-box !important;
           }
           
-          /* FORÇAR botão de envio vermelho */
-          .flowise-textinput button,
-          [class*="textinput"] button,
-          [class*="send"] button,
-          button[type="submit"] {
+          /* Ajustar container principal */
+          .flowise-chatwindow {
+            height: 100vh !important;
+            position: relative !important;
+            background: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          
+          /* Botão de envio vermelho */
+          .flowise-textinput button {
             background: #dc2626 !important;
-            background-color: #dc2626 !important;
             border: none !important;
             color: white !important;
           }
           
-          .flowise-textinput button:hover,
-          [class*="textinput"] button:hover,
-          [class*="send"] button:hover,
-          button[type="submit"]:hover {
+          .flowise-textinput button:hover {
             background: #b91c1c !important;
-            background-color: #b91c1c !important;
           }
           
           /* Remover TODOS os controles de áudio */
@@ -343,12 +159,7 @@ const FlowiseChat = () => {
             opacity: 0 !important;
             pointer-events: none !important;
           }
-          .chatbot-chat-view {
-            margin: 0px;
-            overflow: hidden;
-            background-color: rgb(255, 255, 255);
-            height: -webkit-fill-available;
-          }
+          
           /* Remover ícones de áudio */
           svg[data-icon*="microphone"],
           svg[data-icon*="voice"],
@@ -360,11 +171,6 @@ const FlowiseChat = () => {
           .play-icon {
             display: none !important;
           }
-          
-          /* Garantir que o body não tenha scroll */
-          body {
-            overflow: hidden !important;
-          }
         `,
         chatWindow: {
           showTitle: true,
@@ -374,8 +180,8 @@ const FlowiseChat = () => {
           welcomeMessage: 'Olá! Como posso ajudá-lo com suas vendas hoje?',
           errorMessage: 'Ops! Algo deu errado. Tente novamente.',
           backgroundColor: '#ffffff',
-          height: '100vw',
-          width: '100vw',
+          height: '100%',
+          width: '100%',
           fontSize: 16,
           starterPrompts: [
             "Quais dados e informações são essenciais para a análise do cenário atual da empresa?",
