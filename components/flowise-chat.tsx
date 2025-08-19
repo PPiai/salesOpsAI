@@ -65,7 +65,7 @@ const FlowiseChat = () => {
             left: 0 !important;
             right: 0 !important;
             z-index: 1000 !important;
-            background: #dc2626 !important;
+            background: #000000 !important;
             color: #ffffff !important;
             border-bottom: 2px solid #dc2626 !important;
             text-align: center !important;
