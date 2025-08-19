@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { signOut } from "@/lib/auth"
 
 declare global {
   interface Window {
@@ -9,15 +8,7 @@ declare global {
   }
 }
 
-const generateUUID = () => {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0
-    const v = c == "x" ? r : (r & 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
-const DashboardPage = () => {
+const FlowiseChat = () => {
   const [chatbotStatus, setChatbotStatus] = useState<"loading" | "connected" | "error">("loading")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -56,16 +47,6 @@ const DashboardPage = () => {
       }
     } catch (error) {
       console.log("[v0] Erro ao restaurar conversa:", error)
-    }
-  }
-
-  const handleLogout = async () => {
-    try {
-      await signOut()
-      window.location.href = "/"
-    } catch (error) {
-      console.error("Erro ao fazer logout:", error)
-      window.location.href = "/"
     }
   }
 
@@ -218,7 +199,7 @@ const DashboardPage = () => {
                       background: #b91c1c !important;
                     }
                     
-                    /* Remover controles de áudio/voz */
+                    /* Remover TODOS os controles de áudio */
                     button[aria-label*="audio"], 
                     button[aria-label*="voice"], 
                     button[aria-label*="record"],
@@ -427,60 +408,48 @@ const DashboardPage = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-black relative">
-      {/* Botão Sair posicionado onde você marcou */}
-      <div className="fixed top-4 right-4 z-[1001]">
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors border border-red-500 text-sm font-medium"
-        >
-          Sair
-        </button>
-      </div>
+    <div className="w-full h-full">
+      {chatbotStatus === "loading" && (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+            <p className="text-white text-lg">Conectando ao Sales Ops AI...</p>
+            <p className="text-gray-400 text-sm mt-2">Carregando chatbot...</p>
+          </div>
+        </div>
+      )}
 
-      <div className="w-full">
-        {chatbotStatus === "loading" && (
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-              <p className="text-white text-lg">Conectando ao Sales Ops AI...</p>
-              <p className="text-gray-400 text-sm mt-2">Carregando chatbot...</p>
+      {chatbotStatus === "error" && (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center max-w-md mx-auto p-6">
+            <div className="text-red-500 text-6xl mb-4">⚠️</div>
+            <h2 className="text-white text-2xl font-bold mb-4">Erro de Conexão</h2>
+            <p className="text-gray-300 mb-6">{errorMessage}</p>
+            <div className="space-y-3">
+              <button
+                onClick={retryConnection}
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors"
+              >
+                Tentar Novamente
+              </button>
+              <button
+                onClick={() => window.location.reload()}
+                className="w-full bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
+              >
+                Recarregar Página
+              </button>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {chatbotStatus === "error" && (
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="text-center max-w-md mx-auto p-6">
-              <div className="text-red-500 text-6xl mb-4">⚠️</div>
-              <h2 className="text-white text-2xl font-bold mb-4">Erro de Conexão</h2>
-              <p className="text-gray-300 mb-6">{errorMessage}</p>
-              <div className="space-y-3">
-                <button
-                  onClick={retryConnection}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors"
-                >
-                  Tentar Novamente
-                </button>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="w-full bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
-                >
-                  Recarregar Página
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div
-          id="chatbot-container"
-          className="w-full h-screen"
-          style={{ display: chatbotStatus === "connected" ? "block" : "none" }}
-        ></div>
-      </div>
+      <div
+        id="chatbot-container"
+        className="w-full h-screen"
+        style={{ display: chatbotStatus === "connected" ? "block" : "none" }}
+      ></div>
     </div>
   )
 }
 
-export default DashboardPage
+export default FlowiseChat
