@@ -47,6 +47,17 @@ const FlowiseChat = () => {
           backgroundColor: 'white'
         },
         customCSS: `
+          /* Container principal com webkit-fill-available */
+          .flowise-chatwindow,
+          .relative.flex.w-full.h-full {
+            height: -webkit-fill-available !important;
+            height: 100vh !important;
+            position: relative !important;
+            background: #ffffff !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+
           /* Header fixo no topo */
           .flowise-chatwindow-header {
             position: fixed !important;
@@ -108,15 +119,6 @@ const FlowiseChat = () => {
             height: 80px !important;
             display: flex !important;
             align-items: center !important;
-          }
-          
-          /* Ajustar container principal */
-          .flowise-chatwindow {
-            height: 100vh !important;
-            position: relative !important;
-            background: #ffffff !important;
-            margin: 0 !important;
-            padding: 0 !important;
           }
           
           /* Botão de envio vermelho */
