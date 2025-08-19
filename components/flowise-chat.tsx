@@ -369,8 +369,8 @@ const FlowiseChat = () => {
           welcomeMessage: 'Olá! Como posso ajudá-lo com suas vendas hoje?',
           errorMessage: 'Ops! Algo deu errado. Tente novamente.',
           backgroundColor: '#ffffff',
-          height: 'auto',
-          width: 'auto',
+          height: '100vw',
+          width: '100vw',
           fontSize: 16,
           starterPrompts: [
             "Quais dados e informações são essenciais para a análise do cenário atual da empresa?",
