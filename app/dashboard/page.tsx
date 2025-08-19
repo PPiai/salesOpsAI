@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-black relative">
       {/* Botão Sair posicionado onde você marcou */}
-      <div className="fixed top-4 right-4 z-[1001]">
+      <div className="fixed top-14 right-4 z-[1001]">
         <form action={signOut}>
           <Button
             type="submit"
