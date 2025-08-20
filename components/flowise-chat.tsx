@@ -179,7 +179,7 @@ const FlowiseChat = () => {
           showAgentMessages: true,
           title: 'Sales Ops AI',
           titleAvatarSrc: 'https://lh3.googleusercontent.com/proxy/sirPhoJhvKS9Vi-8lHbzScplbpIF7P3yPWlGKkGs5M7ydL5XVpmt3v_4w8rUT0yR2cWX-3eWuwvzl7xVaIbn_PbnrbEt-mc=s88-w88-h88-c-k-no',
-          welcomeMessage: 'Olá! Como posso ajudá-lo com suas vendas hoje?',
+          welcomeMessage: 'Olá! Como posso ajudá-lo hoje?',
           errorMessage: 'Ops! Algo deu errado. Tente novamente.',
           backgroundColor: '#ffffff',
           height: '100%',
